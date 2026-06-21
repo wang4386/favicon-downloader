@@ -133,13 +133,16 @@ export function Main({
   ]; 
 
   return (
-    <div className={cn("max-w-4xl mx-auto w-full leading-9 text-base pt-24 pb-16")}>
-      <div className="backdrop-blur-[60px] bg-white/80 rounded-[40px] p-8 md:p-12 border border-white/60 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.08)]">
-        <div className="inline-block px-4 py-1 rounded-full bg-[#1C1C1E]/5 border border-[#1C1C1E]/10 mb-6">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-[#1C1C1E]/60">在线工具</span>
+    <div className={cn("max-w-4xl mx-auto w-full leading-relaxed text-base pt-24 pb-16 px-4")}>
+      {/* Impeccable: editorial hero with eyebrow pill */}
+      <div className="bg-card border border-border rounded-3xl p-8 md:p-12 shadow-sm">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/50 border border-border mb-6">
+          <span className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">在线工具</span>
         </div>
-        <h1 className="text-5xl mb-4 font-extrabold tracking-tight text-[#1C1C1E]">{appConfig.appName}</h1>
-        <p className={`${textCls} text-lg font-normal text-[#1C1C1E]/70 mb-8`}>{t('frontend.home.h1')}</p>
+        <h1 className="text-5xl md:text-6xl mb-4 font-medium tracking-tight text-foreground">
+          Favicon <span className="italic text-primary">下载器</span>
+        </h1>
+        <p className="text-xl font-light text-muted-foreground mb-8 max-w-2xl">{t('frontend.home.h1')}</p>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className="w-full">
@@ -152,14 +155,14 @@ export function Main({
                     <FormControl>
                       <Input
                         type="search"
-                        className="rounded-[28px] h-14 text-lg bg-gray-100/50 border-gray-200/40 shadow-inner backdrop-blur-xl focus:bg-white/90 transition-all aria-[describedby*=-form-item-message]:ring-red-400"
+                        className="rounded-xl h-14 text-base bg-background border-input shadow-sm focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all aria-[describedby*=-form-item-message]:border-destructive"
                         placeholder="输入域名（例如：example.com）"
                         {...field}
                       />
                     </FormControl>
                     <Button
                       loading={fetching}
-                      className="h-14 rounded-full px-8 bg-[#1C1C1E] hover:bg-[#1C1C1E]/90 active:scale-[0.98] transition-all shadow-lg font-semibold"
+                      className="h-14 rounded-full px-8 bg-primary hover:bg-primary/90 transition-all shadow-sm hover:shadow-md hover:translate-y-[-2px] font-medium"
                       disabled={!field.value || fetching}
                     >
                       {t('frontend.home.get_favicons')}
@@ -173,27 +176,28 @@ export function Main({
         </Form>
 
         {error && (
-          <div className="rounded-[28px] border-2 border-red-500/30 bg-red-50/50 p-6 mb-8 backdrop-blur-xl">
-            <p className="text-red-600 font-medium">{error}</p>
+          <div className="rounded-xl border-2 border-destructive/20 bg-destructive/5 p-6 mb-8">
+            <p className="text-destructive font-medium">{error}</p>
           </div>
         )}
-        {fetching && <Skeleton className="h-72 w-full rounded-[28px] mb-8 bg-gray-100/50" />}
+        {fetching && <Skeleton className="h-72 w-full rounded-xl mb-8 bg-muted" />}
         {info && isBrowser() && <Results info={info} />}
       </div>
 
+      {/* Impeccable: vary density, warm surfaces */}
       {host && (
-        <div className="mt-8 backdrop-blur-[60px] bg-white/80 rounded-[40px] p-8 md:p-12 border border-white/60 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.08)]">
+        <div className="mt-12 bg-card border border-border rounded-3xl p-8 md:p-12 shadow-sm">
           {images.map(image => <ImageCode {...image} key={image.src} />)}
         </div>
       )}
 
       {block1 && (
-        <div className="mt-8 backdrop-blur-[60px] bg-white/80 rounded-[40px] p-8 md:p-12 border border-white/60 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.08)]">
+        <div className="mt-12 bg-card border border-border rounded-3xl p-8 md:p-12 shadow-sm prose prose-lg max-w-none">
           <Markdown content={block1} className="" />
         </div>
       )}
 
-      <div className="mt-8 backdrop-blur-[60px] bg-white/80 rounded-[40px] p-8 md:p-12 border border-white/60 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.08)]">
+      <div className="mt-12 bg-card border border-border rounded-3xl p-8 md:p-12 shadow-sm">
         <Faqs faqs={faqs} title={t('frontend.home.faq.title')} />
       </div>
     </div>

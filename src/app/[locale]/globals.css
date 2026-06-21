@@ -1,50 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300..900;1,300..900&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 97%;
-    --foreground: 0 0% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 11%;
-    --primary: 0 0% 11%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 11%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 11%;
-    --destructive: 0 72.22% 50.59%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.4%;
-    --input: 0 0% 89.4%;
-    --ring: 0 0% 11%;
-    --radius: 1.75rem;
+    /* Impeccable: warm cream base, never cold gray */
+    --background: 247 244 239;
+    --foreground: 31 36 33;
+
+    --card: 251 249 245;
+    --card-foreground: 31 36 33;
+
+    --popover: 255 255 255;
+    --popover-foreground: 31 36 33;
+
+    /* Impeccable: terracotta accent, warm charcoal text */
+    --primary: 196 97 47;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 242 227 214;
+    --secondary-foreground: 31 36 33;
+
+    --muted: 242 227 214;
+    --muted-foreground: 92 99 93;
+
+    --accent: 196 97 47;
+    --accent-foreground: 255 255 255;
+
+    --destructive: 220 38 38;
+    --destructive-foreground: 255 255 255;
+
+    /* Impeccable: warm hairline borders */
+    --border: 231 225 215;
+    --input: 226 232 240;
+    --ring: 196 97 47;
+
+    --radius: 0.75rem;
   }
+
   .dark {
-    --background: 0 0% 11%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 11%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 11%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 11%;
-    --secondary: 0 0% 17.5%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 17.5%;
-    --muted-foreground: 0 0% 65.1%;
-    --accent: 0 0% 17.5%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 17.5%;
-    --input: 0 0% 17.5%;
-    --ring: 0 0% 83%;
+    --background: 31 36 33;
+    --foreground: 247 244 239;
+
+    --card: 44 50 46;
+    --card-foreground: 247 244 239;
+
+    --popover: 44 50 46;
+    --popover-foreground: 247 244 239;
+
+    --primary: 196 97 47;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 58 65 60;
+    --secondary-foreground: 247 244 239;
+
+    --muted: 58 65 60;
+    --muted-foreground: 156 163 158;
+
+    --accent: 196 97 47;
+    --accent-foreground: 255 255 255;
+
+    --destructive: 239 68 68;
+    --destructive-foreground: 247 244 239;
+
+    --border: 58 65 60;
+    --input: 58 65 60;
+    --ring: 196 97 47;
   }
 }
 
@@ -53,6 +76,13 @@
     @apply border-border;
   }
   body {
-    @apply bg-[#F2F2F7] text-foreground font-light;
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
   }
 }

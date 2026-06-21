@@ -102,20 +102,20 @@ const IconImage = ({ icon, index, onLoad, domain }: { icon: any; index: number; 
   }, [onLoad]);
 
   return (
-    <div className="bg-secondary p-3 text-base rounded-md">
-      <div className="flex">
-        <a href={icon.href} target="_blank" rel="noopener noreferrer">
+    <div className="bg-card p-4 text-sm rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow">
+      <div className="flex gap-3">
+        <a href={icon.href} target="_blank" rel="noopener noreferrer" className="shrink-0">
           <img
             ref={imgRef}
             src={icon.href}
-            className="h-[50px] w-[50px]"
+            className="h-[50px] w-[50px] rounded-lg border border-border"
             alt={`Icon ${index + 1}`}
           />
         </a>
-        <div className="flex flex-col ml-3 text-sm">
-          <span className="w-full">
-            {index + 1}. Sizes {sizes}
-          </span> 
+        <div className="flex flex-col text-sm min-w-0">
+          <span className="font-medium text-foreground">
+            {index + 1}. {sizes}
+          </span>
           <a href={/^data:image\//.test(icon.href) ? icon.href : `/download/${icon.href}`}
             onClick={(e) => {
               if (/^data:image\//.test(icon.href)) {
@@ -125,7 +125,7 @@ const IconImage = ({ icon, index, onLoad, domain }: { icon: any; index: number; 
             }}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary mt-auto"
+            className="text-primary hover:text-primary/80 mt-auto font-medium transition-colors"
           >
             {t('frontend.home.download')}
           </a>
@@ -157,12 +157,12 @@ export const Results = ({ info }: { info: ResponseInfo }) => {
   }, []);
 
   return (
-    <div className="bg-secondary/60 p-5 text-xl flex flex-col gap-5 mb-10 rounded-md">
-      <div className="font-semibold flex items-center">
-        {t('frontend.home.results_for')}: {iconInfo.host}
-        <SearchCheckIcon size={28} className="ml-2 text-green-700" />
+    <div className="bg-secondary/30 p-6 text-base flex flex-col gap-6 mb-10 rounded-xl border border-border">
+      <div className="font-semibold flex items-center text-lg">
+        {t('frontend.home.results_for')}: <span className="text-primary ml-2">{iconInfo.host}</span>
+        <SearchCheckIcon size={24} className="ml-2 text-success" />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {iconInfo.icons.map((icon, index) => (
           <div key={index}>
             <IconImage
@@ -176,7 +176,7 @@ export const Results = ({ info }: { info: ResponseInfo }) => {
       </div>
       <Button
         onClick={handleDownloadZip}
-        className="rounded-md w-[50%] mx-auto font-semibold"
+        className="rounded-full w-64 mx-auto font-medium shadow-sm hover:shadow-md hover:translate-y-[-2px] transition-all"
       >
         {t('frontend.home.download_zip')}
       </Button>
