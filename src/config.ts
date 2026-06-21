@@ -5,10 +5,10 @@ const defaultLocale = "en" as const;
 export type LocaleType = typeof locales[number];
 
 export const appConfig = {
-  appDomain: process.env.NODE_ENV === 'development' ? "127.0.0.1:3000" : "www.faviconextractor.com",
-  appRootDomain: "faviconextractor.com",
-  appName: "Favicon Extractor",
-  appDescription: "FaviconExtractor",
+  appDomain: process.env.NODE_ENV === 'development' ? "127.0.0.1:3000" : "icon.qninq.cn",
+  appRootDomain: "qninq.cn",
+  appName: "Favicon 下载器",
+  appDescription: "快速提取任何网站的 Favicon 图标",
   gaId: process.env.NEXT_PUBLIC_GA_ID || "G-H5ZKZ7KTHT",
   i18n: {
     locales,

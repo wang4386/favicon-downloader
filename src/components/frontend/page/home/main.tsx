@@ -133,37 +133,69 @@ export function Main({
   ]; 
 
   return (
-    <div className={cn("max-w-4xl mx-auto w-full leading-9 text-base")}> 
-      <h1 className="text-4xl mb-2 font-extrabold">{appConfig.appName}</h1>
-      <p className={`${textCls} border-l-8 border-primary/60 pl-4 font-semibold`}>{t('frontend.home.h1')}</p>
-      <h2 className="text-2xl flex items-center mt-10 font-semibold">
-        {t('frontend.home.sub_to_h1')} 
-      </h2> 
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleSubmit)} className="w-full">
-          <FormField
-            control={form.control}
-            name="domain"
-            render={({ field }) => (
-              <FormItem nospace={true} className="mt-5 mb-8"> 
-                <div className="flex w-full">
-                  <FormControl>
-                    <Input type="search" className="rounded-s-md h-13 text-xl aria-[describedby*=-form-item-message]:ring-red-400" placeholder="Enter Domain (e.g., example.com)" {...field} />
-                  </FormControl>
-                  <Button loading={fetching} className="h-13 rounded-e-md" disabled={!field.value || fetching}>{t('frontend.home.get_favicons')}</Button>
-                </div>  
-                {field.value && <FormMessage /> }
-              </FormItem>
-            )}
-          />
-        </form>
-      </Form>
-      {error && <div className="rounded-md border border-red-500 p-10 mb-10">{error}</div>}
-      {fetching && <Skeleton className="h-72 w-full rounded-md mb-8" />}  
-      {info && isBrowser() && <Results info={info} />}  
-      {host && images.map(image => <ImageCode {...image} key={image.src} />)} 
-      {block1 && <Markdown content={block1} className="mt-10" />}
-      <Faqs faqs={faqs} title={t('frontend.home.faq.title')} />
+    <div className={cn("max-w-4xl mx-auto w-full leading-9 text-base pt-24 pb-16")}>
+      <div className="backdrop-blur-[60px] bg-white/80 rounded-[40px] p-8 md:p-12 border border-white/60 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.08)]">
+        <div className="inline-block px-4 py-1 rounded-full bg-[#1C1C1E]/5 border border-[#1C1C1E]/10 mb-6">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#1C1C1E]/60">在线工具</span>
+        </div>
+        <h1 className="text-5xl mb-4 font-extrabold tracking-tight text-[#1C1C1E]">{appConfig.appName}</h1>
+        <p className={`${textCls} text-lg font-normal text-[#1C1C1E]/70 mb-8`}>{t('frontend.home.h1')}</p>
+
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(handleSubmit)} className="w-full">
+            <FormField
+              control={form.control}
+              name="domain"
+              render={({ field }) => (
+                <FormItem nospace={true} className="mb-8">
+                  <div className="flex w-full gap-3">
+                    <FormControl>
+                      <Input
+                        type="search"
+                        className="rounded-[28px] h-14 text-lg bg-gray-100/50 border-gray-200/40 shadow-inner backdrop-blur-xl focus:bg-white/90 transition-all aria-[describedby*=-form-item-message]:ring-red-400"
+                        placeholder="输入域名（例如：example.com）"
+                        {...field}
+                      />
+                    </FormControl>
+                    <Button
+                      loading={fetching}
+                      className="h-14 rounded-full px-8 bg-[#1C1C1E] hover:bg-[#1C1C1E]/90 active:scale-[0.98] transition-all shadow-lg font-semibold"
+                      disabled={!field.value || fetching}
+                    >
+                      {t('frontend.home.get_favicons')}
+                    </Button>
+                  </div>
+                  {field.value && <FormMessage /> }
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
+
+        {error && (
+          <div className="rounded-[28px] border-2 border-red-500/30 bg-red-50/50 p-6 mb-8 backdrop-blur-xl">
+            <p className="text-red-600 font-medium">{error}</p>
+          </div>
+        )}
+        {fetching && <Skeleton className="h-72 w-full rounded-[28px] mb-8 bg-gray-100/50" />}
+        {info && isBrowser() && <Results info={info} />}
+      </div>
+
+      {host && (
+        <div className="mt-8 backdrop-blur-[60px] bg-white/80 rounded-[40px] p-8 md:p-12 border border-white/60 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.08)]">
+          {images.map(image => <ImageCode {...image} key={image.src} />)}
+        </div>
+      )}
+
+      {block1 && (
+        <div className="mt-8 backdrop-blur-[60px] bg-white/80 rounded-[40px] p-8 md:p-12 border border-white/60 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.08)]">
+          <Markdown content={block1} className="" />
+        </div>
+      )}
+
+      <div className="mt-8 backdrop-blur-[60px] bg-white/80 rounded-[40px] p-8 md:p-12 border border-white/60 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.08)]">
+        <Faqs faqs={faqs} title={t('frontend.home.faq.title')} />
+      </div>
     </div>
   );
 }

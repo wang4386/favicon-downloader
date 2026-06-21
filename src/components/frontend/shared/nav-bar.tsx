@@ -23,10 +23,10 @@ export function NavBar() {
     return(
       <Link
         href="/"
-        className="flex items-center gap-2 text-lg font-semibold md:text-base"
+        className="flex items-center gap-2 text-lg font-bold tracking-tight"
       >
-        <Image alt={appConfig.appName} src={"/logo.png"} width={25} height={25} className="h-6 w-6" />
-        <span className="sr-only">{appConfig.appName}</span>
+        <Image alt={appConfig.appName} src={"/logo.png"} width={28} height={28} className="h-7 w-7 rounded-xl" />
+        <span className="text-[#1C1C1E]">{appConfig.appName}</span>
       </Link>
     )
   }
