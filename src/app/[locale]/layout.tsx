@@ -6,17 +6,16 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import { ThemeProvider } from "next-themes";
-import { JetBrains_Mono as FontMono } from "next/font/google";
+import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
 export const runtime = 'edge';
 
-const fontMono = FontMono({
+const fontSans = Inter({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-sans",
 })
 
 export async function generateMetadata({ params }:{ params: any }): Promise<Metadata> { 
@@ -50,23 +49,16 @@ export default async function RootLayout({
   const { messages } = await getRequestConfig({locale});
 
   return (
-    <html lang={locale} suppressHydrationWarning={true}>
-     <body
+     <html lang={locale} suppressHydrationWarning={true}>
+      <body
         className={cn(
-          "min-h-screen bg-background font-mono antialiased",
-          fontMono.variable
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
         )}
       >
         <NextTopLoader color="var(--colors-primary)" />
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
           {children}
-          </ThemeProvider>
         </NextIntlClientProvider>
         {appConfig.gaId && <GoogleAnalytics gaId={appConfig.gaId} />}
       </body>
