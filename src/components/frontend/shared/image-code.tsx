@@ -33,23 +33,34 @@ const ImageCode = ({ alt, title, src, codeStr, className}: { src: string; codeSt
 
   return (
     <div className={className}>
-      <h2 className="text-2xl font-semibold">{title}:</h2>
-      <div className="max-w-[300px] my-5">
-        <img 
-          src={src} 
-          alt={alt} 
-          width={dimensions.width} 
-          height={dimensions.height} 
-          className="bg-secondary rounded-md min-w-[50px] min-h-[50px]" 
-          loading="lazy" 
-        />
+      <h2 className="text-2xl font-semibold mb-4">{title}</h2>
+      <div className="grid md:grid-cols-2 gap-6 items-start">
+        <div>
+          <div className="max-w-[300px] mb-4">
+            <img
+              src={src}
+              alt={alt}
+              width={dimensions.width}
+              height={dimensions.height}
+              className="bg-secondary rounded-xl border border-border min-w-[50px] min-h-[50px]"
+              loading="lazy"
+            />
+          </div>
+          <div className="text-sm text-muted-foreground space-y-1">
+            <p><strong>尺寸:</strong> {dimensions.width} × {dimensions.height}</p>
+            <p><strong>格式:</strong> {src.includes('.svg') ? 'SVG' : src.includes('.png') ? 'PNG' : src.includes('.ico') ? 'ICO' : '图片'}</p>
+          </div>
+        </div>
+        <div>
+          <h3 className="text-sm font-medium mb-2 text-muted-foreground">API 调用示例</h3>
+          <pre className="bg-muted/50 p-4 rounded-xl flex items-start overflow-x-auto relative border border-border">
+            <code className="text-xs font-mono whitespace-pre">
+              {codeStr}
+            </code>
+            <CodeCopyBtn>{codeStr}</CodeCopyBtn>
+          </pre>
+        </div>
       </div>
-      <pre className="bg-secondary p-4 rounded-md flex items-center overflow-hidden relative my-5">
-        <code className="text-sm">
-          {codeStr}
-        </code>
-        <CodeCopyBtn>{codeStr}</CodeCopyBtn>
-      </pre> 
     </div>
   );
 };

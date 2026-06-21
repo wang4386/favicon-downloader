@@ -151,18 +151,18 @@ export function Main({
               name="domain"
               render={({ field }) => (
                 <FormItem nospace={true} className="mb-8">
-                  <div className="flex w-full gap-3">
+                  <div className="flex flex-col md:flex-row w-full gap-3">
                     <FormControl>
                       <Input
                         type="search"
-                        className="rounded-xl h-14 text-base bg-background border-input shadow-sm focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all aria-[describedby*=-form-item-message]:border-destructive"
+                        className="flex-1 rounded-xl h-14 text-base bg-background border-input shadow-sm focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all aria-[describedby*=-form-item-message]:border-destructive"
                         placeholder="输入域名（例如：example.com）"
                         {...field}
                       />
                     </FormControl>
                     <Button
                       loading={fetching}
-                      className="h-14 rounded-full px-8 bg-primary hover:bg-primary/90 transition-all shadow-sm hover:shadow-md hover:translate-y-[-2px] font-medium"
+                      className="h-14 rounded-full px-8 bg-primary hover:bg-primary/90 transition-all shadow-sm hover:shadow-md hover:translate-y-[-2px] font-medium md:w-auto w-full"
                       disabled={!field.value || fetching}
                     >
                       {t('frontend.home.get_favicons')}
@@ -184,22 +184,12 @@ export function Main({
         {info && isBrowser() && <Results info={info} />}
       </div>
 
-      {/* Impeccable: vary density, warm surfaces */}
+      {/* API 接口调用说明 */}
       {host && (
         <div className="mt-12 bg-card border border-border rounded-3xl p-8 md:p-12 shadow-sm">
           {images.map(image => <ImageCode {...image} key={image.src} />)}
         </div>
       )}
-
-      {block1 && (
-        <div className="mt-12 bg-card border border-border rounded-3xl p-8 md:p-12 shadow-sm prose prose-lg max-w-none">
-          <Markdown content={block1} className="" />
-        </div>
-      )}
-
-      <div className="mt-12 bg-card border border-border rounded-3xl p-8 md:p-12 shadow-sm">
-        <Faqs faqs={faqs} title={t('frontend.home.faq.title')} />
-      </div>
     </div>
   );
 }
